@@ -1,5 +1,5 @@
 'use strict';
-// High-detail renderer for the Cohnsoft identity: smooth true-colour artwork with bevels, a lit rim, glass gloss and soft shadows.
+// High-detail renderer for the VigilTech identity: smooth true-colour artwork with bevels, a lit rim, glass gloss and soft shadows.
 // Everything is analytic (signed-distance shapes), so any size is drawn natively at that size, never scaled. The results become
 // Sprite documents (RGBA) in build.js, which Sprite then saves and exports.
 const fs = require('fs');
@@ -41,28 +41,35 @@ const sdSquircle = (px, py, a) => { const f = Math.pow(Math.pow(Math.abs(px) / a
 const cov = (d) => clamp(0.5 - d, 0, 1);
 const circle = (px, py, r) => Math.hypot(px, py) - r;
 
-// The C: an open ring that thins to sharp, thorn-like ends. The glint: a four-point star with concave sides.
+// The mark: a vigil lamp. A flame (a vesica, the lens made by two pointed arches) above a bowl (an upside-down lancet arch),
+// with a small cross cut into the bowl and the four-point glint beside the flame.
 const TAPER_MIN = 0.3;
-const sdThornArc = (px, py, R, half, T) => {
-  const r = Math.hypot(px, py), th = Math.atan2(py, px), a = Math.abs(th);
-  if (a >= half) { const t = T * (TAPER_MIN + (1 - TAPER_MIN) * smooth(half, half + 0.85, a)); return Math.abs(r - R) - t / 2; }
-  const ex = R * Math.cos(half), ey = R * Math.sin(half);
-  return Math.min(Math.hypot(px - ex, py - ey), Math.hypot(px - ex, py + ey)) - (T * TAPER_MIN) / 2;
+const FLAME = { y: -0.36, hh: 0.27, hw: 0.125, tilt: 9 * Math.PI / 180 }, BOWL = { w: 0.36, top: 0.0, rho: 0.06 }, GLINT = { x: 0.47, y: -0.44, r: 0.1 };
+/** Distance (in glyph units) to the flame: the intersection of two circles, tilted a little so it flickers. */
+const sdFlame = (u, v) => {
+  const R = (FLAME.hh * FLAME.hh + FLAME.hw * FLAME.hw) / (2 * FLAME.hw), c = R - FLAME.hw, ca = Math.cos(FLAME.tilt), sa = Math.sin(FLAME.tilt), px = u, py = v - FLAME.y;
+  const lx = px * ca + py * sa, ly = -px * sa + py * ca;
+  return Math.max(Math.hypot(lx - c, ly) - R, Math.hypot(lx + c, ly) - R);
 };
-/** Four-point star with concave sides: the square |x|,|y| <= r with a circle of radius r bitten out of each corner. Tips are true points. */
+/** The bowl: an inverted lancet, corners rounded by rho; optional cross cut out of it. */
+const sdBowl = (u, v, cross) => {
+  const R1 = 2 * BOWL.w - BOWL.rho, d = Math.max(Math.hypot(u + BOWL.w, v - BOWL.top) - R1, Math.hypot(u - BOWL.w, v - BOWL.top) - R1, BOWL.top + BOWL.rho - v) - BOWL.rho;
+  if (!cross) return d;
+  const box = (x, y, hx, hy) => Math.max(Math.abs(x) - hx, Math.abs(y) - hy), cr = Math.min(box(u, v - 0.27, 0.028, 0.15), box(u, v - 0.2, 0.09, 0.028));
+  return Math.max(d, -cr);
+};
 const sdStar = (px, py, r) => { const ax = Math.abs(px), ay = Math.abs(py); return Math.max(Math.max(ax, ay) - r, -(Math.hypot(ax - r, ay - r) - r)); };
 /** The lancet (pointed) arch, in unit coordinates: u across -1..1, v up 0..1 (apex). Returns >0 inside. */
 const lancet = (u, v) => 1 - ((Math.abs(u) + 1) * (Math.abs(u) + 1) + 3 * v * v) / 4;
 
-// Cohnsoft Pink #ff0058 over plum-black: the one colour, and the dark it sits in.
+// VigilTech Pink #ff0058 over plum-black: the one colour, and the dark it sits in.
 const PINK = { hi: hex('#ff6a9b'), top: hex('#ff5c8f'), mid: hex('#ff0058'), bot: hex('#5a001f'), deep: hex('#1f0009'), wine: hex('#3d0016'), glow: hex('#ff8fb3') };
 
 /** The glyph's geometry for a tile whose half-width is a (pixels), centred at (cx, cy). */
-function glyphGeom(cx, cy, a) {
-  const gx = cx - 0.08 * a;
-  return { cx: gx, cy, R: 0.5 * a, T: 0.235 * a, half: (41 * Math.PI) / 180, starX: gx + 0.585 * a, starR: 0.135 * a };
+function glyphGeom(cx, cy, a, cross) {
+  return { cx, cy: cy + 0.0 * a, a, sc: 1.2, cross: !!cross, R: 0.62 * a * 1.2, T: 0.235 * a };
 }
-const sdGlyph = (g, x, y) => Math.min(sdThornArc(x - g.cx, y - g.cy, g.R, g.half, g.T), sdStar(x - g.starX, y - g.cy, g.starR));
+const sdGlyph = (g, x, y) => { const k = g.a * g.sc, u = (x - g.cx) / k, v = (y - g.cy) / k; return Math.min(sdFlame(u, v), sdBowl(u, v, g.cross), sdStar(u - GLINT.x, v - GLINT.y, GLINT.r)) * k; };
 
 /** Light from the top left: shade a raised bone-white surface from its distance field. */
 function shadeGlyph(g, x, y, d, fill) {
@@ -78,7 +85,7 @@ function shadeGlyph(g, x, y, d, fill) {
 /** The tile mark. style 'mark' fills the canvas (favicons, web), 'app' is a desktop-style icon with margin and a soft shadow. */
 function renderMark(S, style) {
   const cv = new Canvas(S, S), cx = S / 2, cy = S / 2, app = style === 'app';
-  const a = (app ? 0.405 : 0.485) * S, k = Math.max(S / 512, 0.3), g = glyphGeom(cx, cy, a);
+  const a = (app ? 0.405 : 0.485) * S, k = Math.max(S / 512, 0.3), g = glyphGeom(cx, cy, a, S >= 64);
   const fillGlyph = [[0, hex('#ffffff')], [0.55, hex('#fff1f6')], [1, hex('#ffc2d6')]];
   for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
     const px = x + 0.5 - cx, py = y + 0.5 - cy;
@@ -107,7 +114,7 @@ function renderMark(S, style) {
 
 /** The glyph on its own: 'pink' | 'white' | 'black'. */
 function renderGlyph(S, variant) {
-  const cv = new Canvas(S, S), a = 0.52 * S, g = glyphGeom(S / 2 + 0.08 * a, S / 2, a);
+  const cv = new Canvas(S, S), a = 0.5 * S * 0.9, g = glyphGeom(S / 2, S / 2, a, S >= 64);
   const fills = { pink: [[0, hex('#ff6a9b')], [0.5, hex('#ff0058')], [1, hex('#a8003a')]], white: [[0, hex('#ffffff')], [1, hex('#ffffff')]], black: [[0, hex('#17101a')], [1, hex('#17101a')]] }[variant];
   for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
     const gd = sdGlyph(g, x + 0.5, y + 0.5), gc = cov(gd);
@@ -117,7 +124,7 @@ function renderGlyph(S, variant) {
   return cv;
 }
 
-// ---------------------------------------------------------------------------------------------- wordmark from the Cohn Sans outlines
+// ---------------------------------------------------------------------------------------------- wordmark from the Vigil Sans outlines
 const OUT = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'fonts', 'wordmark-outlines.json'), 'utf8'));
 /** Fill closed polygons (nonzero rule) with area coverage; transform maps font units to pixels. */
 function fillContours(cv, contours, tx, color) {
@@ -136,10 +143,10 @@ function fillContours(cv, contours, tx, color) {
   }
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const c = clamp(acc[y * W + x], 0, 1); if (c > 0) cv.over(x, y, color, c); }
 }
-/** Draw "cohnsoft" with its left edge at x and baseline at y; fontPx is the height of one em. */
+/** Draw "vigiltech" with its left edge at x and baseline at y; fontPx is the height of one em. */
 function drawWordmark(cv, x, baseline, fontPx, colorA, colorB) {
   const k = fontPx / OUT.unitsPerEm;
-  OUT.letters.forEach((l, i) => fillContours(cv, l.contours, (ux, uy) => [x + ux * k, baseline - uy * k], i < 4 ? colorA : colorB));
+  OUT.letters.forEach((l, i) => fillContours(cv, l.contours, (ux, uy) => [x + ux * k, baseline - uy * k], i < 5 ? colorA : colorB));
   return OUT.width * k;
 }
 const wordmarkWidth = (fontPx) => (OUT.width * fontPx) / OUT.unitsPerEm;
@@ -219,4 +226,4 @@ function renderSocial(W, H) {
   return cv;
 }
 
-module.exports = { Canvas, renderMark, renderGlyph, renderLockup, renderWordmark, renderStacked, renderWallpaper, renderSocial, hex, wordmarkWidth, glyphGeom, PINK, sdStar, TAPER_MIN, lancet };
+module.exports = { sdGlyph, FLAME, BOWL, GLINT, Canvas, renderMark, renderGlyph, renderLockup, renderWordmark, renderStacked, renderWallpaper, renderSocial, hex, wordmarkWidth, glyphGeom, PINK, sdStar, TAPER_MIN, lancet };

@@ -1,5 +1,5 @@
 'use strict';
-// Procedural pixel artwork for the Cohnsoft identity. Everything returns grids of palette indices (-1 = transparent),
+// Procedural pixel artwork for the VigilTech identity. Everything returns grids of palette indices (-1 = transparent),
 // which build.js draws into AltStack Sprite documents with Sprite's own tools and exports with Sprite's PNG engine.
 const { BAYER } = require('./palette');
 
@@ -16,21 +16,13 @@ function squircle(n, x, y, inset) {
   return Math.pow(px, 5) + Math.pow(py, 5) <= 1;
 }
 
-/** Geometry of the C and its bit for a tile of n pixels. */
-function geom(n) {
-  const cx = n * 0.455, cy = n * 0.5, rOut = n * 0.335, rIn = n * 0.2, half = (40 * Math.PI) / 180;
-  const bit = Math.max(2, Math.round(n * 0.125));
-  const bx = Math.round(cx + rOut * 0.74 - bit / 2), by = Math.round(cy - bit / 2);
-  return { cx, cy, rOut, rIn, half, bit, bx, by };
-}
-function inGlyph(g, x, y) {
-  const dx = x + 0.5 - g.cx, dy = y + 0.5 - g.cy, r = Math.hypot(dx, dy);
-  if (r <= g.rOut && r >= g.rIn && Math.abs(Math.atan2(dy, dx)) > g.half) return true;   // the ring, minus the opening on the right
-  return Math.abs(x + 0.5 - (g.bx + g.bit / 2)) + Math.abs(y + 0.5 - (g.by + g.bit / 2)) <= g.bit * 0.62;   // the glint: a diamond
-}
+const hd = require('./hd.js');
+/** Geometry of the lamp for a tile of n pixels (the same shapes as the HD mark, sampled per pixel). */
+function geom(n) { return hd.glyphGeom(n / 2, n / 2, n * 0.5 * 0.8, false); }
+function inGlyph(g, x, y) { return hd.sdGlyph(g, x + 0.5, y + 0.5) < 0; }
 /** Glyph colour by height: white at the top shading down to pale pink, so it reads as a raised, lit object. */
 function glyphShade(g, y, ramp) {
-  const t = Math.max(0, Math.min(0.999, (y - (g.cy - g.rOut)) / (2 * g.rOut)));
+  const t = Math.max(0, Math.min(0.999, (y - (g.cy - g.R)) / (2 * g.R)));
   return ramp[Math.floor(t * ramp.length)];
 }
 
@@ -82,9 +74,9 @@ const GLYPHS = {
   t() { const m = mk(8, XH + ASC - 1); rect(m, 2, 1, 4, XH + ASC - 2); rect(m, 0, ASC - 1, 7, ASC + 1); rect(m, 4, XH + ASC - 4, 7, XH + ASC - 2); roundCorners(m, 2, XH + ASC - 4, 7, XH + ASC - 2, 0, 0, 2, 0); return m; },
 };
 const ADV = { c: 11, o: 12, h: 11, n: 11, s: 11, f: 8, t: 8 };
-/** The word "cohnsoft" at an integer scale; 'A' marks the letters of "cohn", 'B' the letters of "soft", -1 is empty. */
+/** The word "vigiltech" at an integer scale; 'A' marks the letters of "cohn", 'B' the letters of "soft", -1 is empty. */
 function wordmark(scale) {
-  const word = 'cohnsoft', gap = 2, H = (XH + ASC) * scale;
+  const word = 'vigiltech', gap = 2, H = (XH + ASC) * scale;
   let width = 0; for (const ch of word) width += ADV[ch] + gap; width = (width - gap) * scale;
   const out = grid(width, H, -1);
   let x0 = 0;

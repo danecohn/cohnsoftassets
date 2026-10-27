@@ -1,18 +1,27 @@
-# Cohnsoft brand guide
+# VigilTech brand guide
 
-**Cohnsoft** is one company. AltStack and Artemis Softworks are now part of it. Founded by **Demetria Althea Cohn** (online: **Demie Althea Cohn**).
+**VigilTech** makes Christian technology, Catholic at its core, and gives it away. Founded by **Demetria Althea Cohn** (online: **Demie Althea Cohn**). VigilTech is the home of what was AltStack, Artemis Softworks and Cohnsoft. Site: **vigiltech.org**.
 
-> Software in calm, good company, after dark.
+> Keep watch. (Mark 13:37)
+
+## What we believe, and what it means for the software
+
+- **Freely given.** "Freely you have received; freely give." (Matthew 10:8) Everything we make is open source under the **GNU GPL v3**: code, icons, wallpapers, sounds. Anyone may use it, study it, change it and share it, on the same terms.
+- **Human dignity.** No ads, no tracking, no dark patterns, no manufactured outrage. People are never the product.
+- **Truth.** Software says what it does. No dishonest defaults, no hidden costs.
+- **Rest.** No streak guilt, no notification pressure. There is a Sabbath in good design: quiet by default.
+- **Beauty.** The Church built cathedrals so ordinary people could stand inside something beautiful. Software can try to do the same.
+- **Service.** We build tools for people: families, parishes, schools, makers.
 
 ## Identity
 
-The mark is a white **C** that thins to two sharp points, so it also reads as a **crescent moon**, with a single four-point **star** beside it, on a **pink** tile. A pointed-arch glint of light crosses the top of the tile. It is quiet, a little gothic, and friendly. The wordmark is **cohnsoft**, lowercase, in Cohn Sans Bold: "cohn" in ink (or bone white on dark) and "soft" in Cohnsoft Pink.
+The mark is a **vigil lamp**: the lamp that burns day and night beside the tabernacle. The **flame** is a vesica, the lens made where two pointed arches overlap. The **bowl** is an upside-down lancet arch with a small **cross** cut into it. A four-point **star** (the guiding star, the glint of light) rises beside the flame. All of it sits on a **pink** tile. "Vigil" means keeping watch: the Easter Vigil, the watch of the night, Mark 13:37. The wordmark is **vigiltech**, lowercase, in Vigil Sans Bold: "vigil" in ink (or bone white on dark) and "tech" in VigilTech Pink.
 
 | Asset | Use |
 |---|---|
 | **App icon** `logos/app-icon/` | Dock, launchers, stores. Has the soft margin and shadow of a desktop icon. |
 | **Mark** `logos/mark/` | Favicons, avatars, small UI. Fills its canvas. Drawn natively at 16, 32, 48, 64, 128, 256, 512 and 1024 px, so small sizes stay crisp. |
-| **Glyph** `logos/glyph/` | The C and star alone, in pink, white or black, for any background or one-colour print. |
+| **Glyph** `logos/glyph/` | The lamp and star alone, in pink, white or black, for any background or one-colour print. |
 | **Lockup** `logos/lockup/` | Mark + wordmark, horizontal or stacked; light and dark. The default signature. |
 | **Pixel mark** `logos/pixel/` | The 64-pixel version, made in AltStack Sprite, for retro contexts and games. |
 | **Social card, wallpapers** | `logos/social/`; `logos/wallpaper/` (night is the default, dawn is the light alternative). |
@@ -21,7 +30,7 @@ Every raster logo has an editable Sprite document in `source/` (`.asprite.json`)
 
 **Clear space:** keep at least the height of the star free on all sides; one tile-height around the lockup is better.
 **Minimum size:** mark 16 px; lockup 96 px wide; wordmark alone 64 px wide.
-**Do not:** recolour the tile, stretch or rotate the mark, add outlines or extra shadows, put the lockup on busy imagery, set "soft" in another colour, or typeset "cohnsoft" in another font.
+**Do not:** recolour the tile, stretch or rotate the mark, add outlines or extra shadows, put the lockup on busy imagery, set "tech" in another colour, or typeset "vigiltech" in another font.
 
 ## Colour
 
@@ -29,36 +38,36 @@ One pink; everything else is a warm, plum-tinted neutral. See `tokens.json` and 
 
 | Name | Hex | Notes |
 |---|---|---|
-| **Cohnsoft Pink** (Pink 500) | `#ff0058` | The brand colour. Logo, large display type, filled controls (white text only at 18 px bold and up: 3.9:1). |
+| **VigilTech Pink** (Pink 500) | `#ff0058` | The brand colour. Logo, large display type, filled controls (white text only at 18 px bold and up: 3.9:1). |
 | Pink 600 | `#d6004a` | Button fills with white text (5.3:1); body-size pink text on light (5.2:1). |
 | Pink 700 | `#a8003a` | Pink **text and links** on light (7.5:1). |
 | Pink 400 / 300 | `#ff4d86` / `#ff7aa6` | Pink on dark surfaces (text, links, focus). |
 | Pink 900 | `#3d0016` | The deep wine used for vignettes and shadows. |
 | Ink / Graphite | `#17101a` / `#6b5d68` | Text and secondary text on light. |
 | Bone / Paper | `#f6f1f4` / `#fffbfd` | Light background and surface. |
-| Night / Night Raised | `#120a14` / `#1e1422` | Dark appearance. Night is where Cohnsoft is most at home. |
+| Night / Night Raised | `#120a14` / `#1e1422` | Dark appearance. Night is where VigilTech is most at home. |
 
-## Goth, softly
+## Gothic, the cathedral kind
 
-A quiet streak, not a costume. It lives in a few repeatable details:
+The pink-and-plum, after-dark look stays. Its gothic streak is the Catholic one: cathedrals, candlelight and stained glass, never horror. It lives in a few repeatable details:
 
-- **Night first.** Dark, plum-black surfaces with a pink glow low in the frame; light mode is "dawn" (bone and rose), the same world a few hours later.
-- **The pointed arch.** The one gothic shape: the highlight on the tile, the row of arches along the wallpaper's bottom edge, `.cs-lancet` for avatars and hero images.
-- **One star.** The four-point star is the accent: a glint on the mark, tiny stars in the sky, `.cs-star` bullets. Use sparingly.
-- **A crescent.** Faint, large, in wallpapers and empty states.
+- **Night first.** Plum-black surfaces with a pink glow low in the frame, like a church lit by candles; light mode is "dawn" (bone and rose), the same church at morning Mass.
+- **The pointed arch.** The one gothic shape: the lancet window. It is the gloss on the tile, the arches along the wallpaper, and the flame and the bowl of the mark. `.vt-lancet` for avatars and hero images.
+- **One star.** The four-point star is the accent: the glint on the mark, stars in the sky, `.vt-star` bullets. Use sparingly.
+- **The rose window and the crescent.** In wallpapers and empty states; the rose is Our Lady's flower.
 - **Candle-warm light and thin rims.** Highlights lean rose, edges are fine hairlines, shadows are wine, never grey.
-- **Never:** skulls, bats, spikes, blackletter body text, dripping effects. Stay friendly, readable and calm. Accessibility rules beat atmosphere.
+- **Never:** skulls used as decoration, bats, webs, occult or pagan symbols, spikes, blackletter body text, dripping effects. A memento mori is fine in context; costume is not. Stay friendly, readable and calm. Accessibility beats atmosphere.
 
-## Typeface: Cohn Sans
+## Typeface: Vigil Sans
 
-An original typeface drawn for Cohnsoft (`fonts/`, Regular and Bold, TTF and WOFF2, SIL OFL 1.1). The clean, open feel of a modern system sans, plus reading aids from dyslexia-friendly faces: easily confused letters look different (b d p q, I l 1, O 0), bottoms are drawn heavier so each letter sits on the line, apertures are open, spacing is generous. Nothing was traced from another typeface. Use `css/cohnsans.css`. Fall back to the system font; `data-font="system"` is a switch for people who prefer it. A display cut with a subtle gothic flourish is a possible later addition.
+An original typeface drawn for VigilTech (`fonts/`, Regular and Bold, TTF and WOFF2, SIL OFL 1.1). The clean, open feel of a modern system sans, plus reading aids from dyslexia-friendly faces: easily confused letters look different (b d p q, I l 1, O 0), bottoms are drawn heavier so each letter sits on the line, apertures are open, spacing is generous. Nothing was traced from another typeface. Use `css/vigilsans.css`. Fall back to the system font; `data-font="system"` is a switch for people who prefer it. A display cut with a subtle gothic flourish is a possible later addition.
 
 ## Design language: Golden Gate
 
 Software that feels at home on a Mac and travels well to Windows and Linux. Inspired by the layered, translucent look of modern macOS; no third-party artwork, fonts or marks are used.
 
 1. **Material over decoration.** Bars and sheets are frosted glass (18 px blur, saturated) over the wallpaper; content sits on quiet surfaces.
-2. **One tint.** Cohnsoft Pink marks selection, focus and the primary action. Everything else is neutral.
+2. **One tint.** VigilTech Pink marks selection, focus and the primary action. Everything else is neutral.
 3. **Soft geometry.** 8 px controls, 12 px groups, 22 px sheets.
 4. **Depth from light.** A lit top edge, a darker lower edge, long soft shadows. Never hard black outlines.
 5. **Accessible.** 4.5:1 text, a 3 px focus ring, reduced motion and reduced transparency respected, forced-colors supported.
@@ -68,8 +77,12 @@ Software that feels at home on a Mac and travels well to Windows and Linux. Insp
 ## Voice and credits
 
 Plain, warm, specific. Say what the software does; skip hype.
-Standard credit: **A product of Cohnsoft.**  Founder line: **Cohnsoft was founded by Demetria Althea Cohn.**
-Product names (AltStack Mail, AltStack Game Producer, Sprite, Box, and so on) stay as product identities until renamed; Cohnsoft is the company behind them. Keep upstream and third-party notices intact: Godot, Blender, BeepBox and the like are credited by their own licences.
+Standard credit: **A product of VigilTech, vigiltech.org.**  Founder line: **VigilTech was founded by Demetria Althea Cohn.**  Short blessing, where it fits: *Ad maiorem Dei gloriam.*
+Product names (AltStack Mail, AltStack Game Producer, Sprite, Box, and so on) stay as product identities until renamed; VigilTech is the company behind them. Keep upstream and third-party notices intact: Godot, Blender, BeepBox and the like are credited by their own licences.
+
+## Licence
+
+Code and artwork (logos, icons, wallpapers, sounds) are under the **GNU General Public License v3** (`LICENSE`). The typeface Vigil Sans is under the SIL Open Font License 1.1 (`fonts/OFL.txt`), which is compatible with the GPL and lets the font travel inside documents and apps. The name and logo of VigilTech identify the project: use the artwork freely under the GPL, but do not present your work as being made or endorsed by VigilTech.
 
 ## Provenance
 

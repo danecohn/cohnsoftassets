@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Cohn Sans: an original typeface for Cohnsoft, drawn here as stroke skeletons and expanded to outlines.
+"""Vigil Sans: an original typeface for VigilTech, drawn here as stroke skeletons and expanded to outlines.
 
 Design brief: the clean, open, neutral feel of a modern system sans, combined with the reading aids of dyslexia-friendly
 faces: letters that are hard to confuse (b d p q, I l 1, O 0), heavier bottoms so each letter sits on the line, open
 apertures, round friendly terminals and generous spacing. Nothing is traced or copied from another typeface.
 
-  PYTHONPATH=<fonttools> python3 brand/cohnsoft/fonts/build_font.py
-Writes CohnSans-Regular/Bold .ttf and .woff2, and wordmark outlines (JSON) for the logo artwork.
+  PYTHONPATH=<fonttools> python3 brand/vigiltech/fonts/build_font.py
+Writes VigilSans-Regular/Bold .ttf and .woff2, and wordmark outlines (JSON) for the logo artwork.
 """
 import json, math, os, sys
 
@@ -248,7 +248,7 @@ def make_font(st, sb, family, style_name, weight):
     fb.setupHorizontalMetrics(metrics)
     fb.setupHorizontalHeader(ascent=ASC + 60, descent=DESC - 20, lineGap=0)
     fb.setupNameTable({'familyName': family, 'styleName': style_name, 'uniqueFontIdentifier': family + ' ' + style_name + ' 1.0', 'fullName': family + ' ' + style_name, 'psName': (family + '-' + style_name).replace(' ', ''), 'version': 'Version 1.000',
-                       'copyright': 'Copyright 2026 Cohnsoft. Original typeface.', 'licenseDescription': 'SIL Open Font License 1.1', 'manufacturer': 'Cohnsoft', 'designer': 'Cohnsoft'})
+                       'copyright': 'Copyright 2026 VigilTech. Original typeface.', 'licenseDescription': 'SIL Open Font License 1.1', 'manufacturer': 'VigilTech', 'designer': 'VigilTech'})
     fb.setupOS2(sTypoAscender=ASC + 60, sTypoDescender=DESC - 20, sTypoLineGap=0, usWinAscent=ASC + 80, usWinDescent=abs(DESC) + 40, sxHeight=XH, sCapHeight=CAP, usWeightClass=weight, fsType=0)
     fb.setupPost(); fb.setupDummyDSIG = None
     font = fb.font
@@ -264,20 +264,20 @@ def main():
     reg = Style('Regular', 86, 0, 0.26)
     bold = Style('Bold', 134, 40, 0.22)
     for st, weight in ((reg, 400), (bold, 700)):
-        font, outlines = make_font(st, 64 if st is reg else 60, 'Cohn Sans', st.name, weight)
-        base = os.path.join(HERE, 'CohnSans-' + st.name)
+        font, outlines = make_font(st, 64 if st is reg else 60, 'Vigil Sans', st.name, weight)
+        base = os.path.join(HERE, 'VigilSans-' + st.name)
         font.save(base + '.ttf')
         try:
             font.flavor = 'woff2'; font.save(base + '.woff2')
         except Exception as e: print('woff2 skipped:', e)
         print('wrote', base + '.ttf', len(outlines), 'glyphs')
-    # wordmark outlines for the logo artwork: "cohnsoft" in Bold, as contours in font units (y up)
+    # wordmark outlines for the logo artwork: "vigiltech" in Bold, as contours in font units (y up)
     font = None
     from fontTools.ttLib import TTFont
     from fontTools.pens.recordingPen import DecomposingRecordingPen
-    f = TTFont(os.path.join(HERE, 'CohnSans-Bold.ttf')); gs = f.getGlyphSet(); cmap = f.getBestCmap(); hmtx = f['hmtx']
+    f = TTFont(os.path.join(HERE, 'VigilSans-Bold.ttf')); gs = f.getGlyphSet(); cmap = f.getBestCmap(); hmtx = f['hmtx']
     x = 0; contours = []; letters = []
-    for ch in 'cohnsoft':
+    for ch in 'vigiltech':
         name = cmap[ord(ch)]; pen = DecomposingRecordingPen(gs); gs[name].draw(pen); cur = []; first = len(contours)
         for op, args in pen.value:
             if op == 'moveTo': cur = [(args[0][0] + x, args[0][1])]
@@ -290,5 +290,24 @@ def main():
     json.dump({'unitsPerEm': UPM, 'width': x, 'ascender': ASC, 'descender': DESC, 'xHeight': XH, 'letters': letters}, open(os.path.join(HERE, 'wordmark-outlines.json'), 'w'))
 
 
+def export_glyph_outlines():
+    """Every glyph of Vigil Sans Bold as polygons (font units, y up), so artwork can set text in the real typeface."""
+    from fontTools.ttLib import TTFont
+    from fontTools.pens.recordingPen import DecomposingRecordingPen
+    f = TTFont(os.path.join(HERE, 'VigilSans-Bold.ttf')); gs = f.getGlyphSet(); cmap = f.getBestCmap(); hmtx = f['hmtx']
+    out = {}
+    for code, name in cmap.items():
+        pen = DecomposingRecordingPen(gs); gs[name].draw(pen); cs = []; cur = []
+        for op, args in pen.value:
+            if op == 'moveTo': cur = [tuple(args[0])]
+            elif op == 'lineTo': cur.append(tuple(args[0]))
+            elif op in ('closePath', 'endPath'):
+                if cur: cs.append(cur)
+                cur = []
+        out[chr(code)] = {'adv': hmtx[name][0], 'contours': cs}
+    json.dump({'unitsPerEm': UPM, 'ascender': ASC, 'descender': DESC, 'xHeight': XH, 'capHeight': CAP, 'glyphs': out}, open(os.path.join(HERE, 'glyph-outlines.json'), 'w'))
+
+
 if __name__ == '__main__':
     main()
+    export_glyph_outlines()

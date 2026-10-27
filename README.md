@@ -12,6 +12,7 @@ icons/        vigiltech.icns, vigiltech.ico, favicons, apple-touch-icon
 fonts/        Vigil Sans Regular + Bold (TTF, WOFF2), source (build_font.py), OFL.txt
 css/          goldengate.css (design system), vigilsans.css (@font-face)
 source/       editable AltStack Sprite documents (.asprite.json)
+sounds/       chime, bells, a Dorian chant-style piece, interface sounds (WAV)
 tokens.json   colour, radii, type tokens
 tools/        build.js, hd.js, svg.js, site.js, art.js + the Sprite engine modules used to export
 ```

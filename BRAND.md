@@ -80,6 +80,10 @@ Plain, warm, specific. Say what the software does; skip hype.
 Standard credit: **A product of VigilTech, vigiltech.org.**  Founder line: **VigilTech was founded by Demetria Althea Cohn.**  Short blessing, where it fits: *Ad maiorem Dei gloriam.*
 Product names (AltStack Mail, AltStack Game Producer, Sprite, Box, and so on) stay as product identities until renamed; VigilTech is the company behind them. Keep upstream and third-party notices intact: Godot, Blender, BeepBox and the like are credited by their own licences.
 
+## Sound
+
+`sounds/` (synthesised from scratch by `tools/sound.js`, no samples, GPL v3): `vigil-chime` (startup, a rising Dorian figure in bells over an open fifth), `bell` (notifications), `angelus` (the three-three-three-and-nine pattern, for a daily reminder), `kyrie-vigil` (an original unison melody in the Dorian mode over a drone, for calm backgrounds; it is not a quotation of any existing chant) and three soft interface sounds. Sacred music in our software is meant to be prayerful and quiet by default; nothing plays unless the person asks for it.
+
 ## Licence
 
 Code and artwork (logos, icons, wallpapers, sounds) are under the **GNU General Public License v3** (`LICENSE`). The typeface Vigil Sans is under the SIL Open Font License 1.1 (`fonts/OFL.txt`), which is compatible with the GPL and lets the font travel inside documents and apps. The name and logo of VigilTech identify the project: use the artwork freely under the GPL, but do not present your work as being made or endorsed by VigilTech.

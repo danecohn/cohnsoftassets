@@ -1,39 +1,44 @@
 /*
-  Cohnsoft design system: "Golden Gate".
-  Calm, layered, translucent software that feels at home on a Mac and travels well to Windows and Linux.
-  Original code and artwork: no third-party artwork, fonts or marks. Needs css/cohnsans.css for the typeface (optional).
+  Cohnsoft design system: "Golden Gate", after dark.
+  Calm, layered, translucent software that feels at home on a Mac and travels well to Windows and Linux, with a quiet gothic
+  streak: plum-black nights, one rose-pink tint, pointed arches and a single star. Original code and artwork: no third-party
+  artwork, fonts or marks. Optional typeface: css/cohnsans.css.
 
   Principles
-   1. Material over decoration: bars and sheets are frosted glass over the green wallpaper; content sits on quiet surfaces.
-   2. One green. Cohnsoft Green tints controls, selection and focus. Everything else is neutral.
-   3. Soft geometry: 8 px controls, 12 px groups, 22 px sheets, continuous corners where the platform allows.
+   1. Material over decoration: bars and sheets are frosted glass over the wallpaper; content sits on quiet surfaces.
+   2. One pink. Cohnsoft Pink #ff0058 tints selection, focus and the primary action. Everything else is a warm, plum-tinted neutral.
+   3. Soft geometry: 8 px controls, 12 px groups, 22 px sheets. The one gothic shape is the pointed (lancet) arch.
    4. Depth from light: a lit top edge, a darker lower edge, long soft shadows. Never hard black outlines.
-   5. Accessible by default: 4.5:1 text, a visible 3 px focus ring, reduced motion and reduced transparency respected.
+   5. Goth, softly: night is the natural home, candle-warm highlights, thin rims, one star. No skulls, bats or clichés; stay friendly and readable.
+   6. Accessible by default: 4.5:1 text, a visible 3 px focus ring, reduced motion and reduced transparency respected.
 */
 :root {
   color-scheme: light dark;
-  /* Cohnsoft Green */
-  --cs-green-50: #e9fbf0; --cs-green-100: #c8f6d9; --cs-green-200: #9cf0bb; --cs-green-300: #6ae79a; --cs-green-400: #3fd477;
-  --cs-green-500: #25bb5d; --cs-green-600: #1a9b4d; --cs-green-700: #0a7a37; --cs-green-800: #0b6a34; --cs-green-900: #05361b;
-  --cs-tint: var(--cs-green-500); --cs-tint-strong: var(--cs-green-700); --cs-tint-soft: rgba(37, 187, 93, .14); --cs-on-tint: #ffffff;
-  /* neutrals (light) */
-  --cs-bg: #f2f2f7; --cs-surface: #ffffff; --cs-surface-2: #f7f7fa; --cs-label: #1d1d1f; --cs-label-2: #636366; --cs-label-3: #8e8e93;
-  --cs-separator: rgba(60, 60, 67, .16); --cs-fill: rgba(120, 120, 128, .12); --cs-fill-2: rgba(120, 120, 128, .2);
-  --cs-glass: rgba(251, 251, 253, .62); --cs-glass-edge: rgba(255, 255, 255, .7); --cs-glass-blur: 18px;
-  --cs-danger: #d70015; --cs-warning: #b25000; --cs-info: #0066cc;
+  /* Cohnsoft Pink */
+  --cs-pink-50: #fff0f5; --cs-pink-100: #ffd6e4; --cs-pink-200: #ffadc9; --cs-pink-300: #ff7aa6; --cs-pink-400: #ff4d86;
+  --cs-pink-500: #ff0058; --cs-pink-600: #d6004a; --cs-pink-700: #a8003a; --cs-pink-800: #7a002b; --cs-pink-900: #3d0016;
+  --cs-tint: var(--cs-pink-500); --cs-tint-strong: var(--cs-pink-700); --cs-tint-soft: rgba(255, 0, 88, .11); --cs-on-tint: #ffffff;
+  /* neutrals, light: warm bone and plum ink */
+  --cs-bg: #f6f1f4; --cs-surface: #fffbfd; --cs-surface-2: #faf4f7; --cs-label: #17101a; --cs-label-2: #6b5d68; --cs-label-3: #92838f;
+  --cs-separator: rgba(58, 30, 52, .15); --cs-fill: rgba(110, 70, 100, .1); --cs-fill-2: rgba(110, 70, 100, .18);
+  --cs-glass: rgba(255, 250, 252, .62); --cs-glass-edge: rgba(255, 255, 255, .72); --cs-glass-blur: 18px;
+  --cs-danger: #b3001b; --cs-warning: #9a4a00; --cs-info: #1a5cc2;
   /* geometry and depth */
-  --cs-r-control: 8px; --cs-r-group: 12px; --cs-r-sheet: 22px; --cs-focus: 0 0 0 3px rgba(37, 187, 93, .55);
-  --cs-shadow-1: 0 1px 2px rgba(0, 0, 0, .06), 0 2px 8px rgba(0, 0, 0, .06);
-  --cs-shadow-2: 0 11px 34px rgba(0, 0, 0, .16); --cs-shadow-3: 17px 20px 40px rgba(0, 0, 0, .18);
+  --cs-r-control: 8px; --cs-r-group: 12px; --cs-r-sheet: 22px; --cs-focus: 0 0 0 3px rgba(255, 0, 88, .5);
+  --cs-shadow-1: 0 1px 2px rgba(30, 6, 22, .07), 0 2px 8px rgba(30, 6, 22, .07);
+  --cs-shadow-2: 0 11px 34px rgba(30, 6, 22, .2); --cs-shadow-3: 17px 20px 40px rgba(30, 6, 22, .22);
   --cs-s1: 4px; --cs-s2: 8px; --cs-s3: 12px; --cs-s4: 16px; --cs-s5: 24px; --cs-s6: 32px; --cs-s7: 48px;
-  --cs-wallpaper: linear-gradient(160deg, #9cf0bb 0%, #3fcb78 48%, #10713a 100%);
+  --cs-wallpaper: linear-gradient(165deg, #fff4f8 0%, #ffc0d4 50%, #ff5c8f 100%);
+  --cs-wall-arc-a: rgba(255, 255, 255, .4); --cs-wall-arc-b: rgba(168, 0, 58, .22);
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --cs-tint: var(--cs-green-400); --cs-tint-strong: var(--cs-green-300); --cs-tint-soft: rgba(63, 212, 119, .2); --cs-on-tint: #04210f;
-  --cs-bg: #1c1c1e; --cs-surface: #2c2c2e; --cs-surface-2: #242426; --cs-label: #f5f5f7; --cs-label-2: #aeaeb2; --cs-label-3: #8e8e93; --cs-separator: rgba(84, 84, 88, .55); --cs-fill: rgba(120, 120, 128, .24); --cs-fill-2: rgba(120, 120, 128, .36);
-  --cs-glass: rgba(44, 44, 46, .6); --cs-glass-edge: rgba(255, 255, 255, .12); --cs-danger: #ff6961; --cs-warning: #ffb340; --cs-info: #64b5ff; --cs-shadow-2: 0 11px 34px rgba(0, 0, 0, .65); --cs-wallpaper: linear-gradient(160deg, #0f5a2d 0%, #0a3d20 55%, #04200f 100%); } }
-:root[data-theme="dark"] { --cs-tint: var(--cs-green-400); --cs-tint-strong: var(--cs-green-300); --cs-tint-soft: rgba(63, 212, 119, .2); --cs-on-tint: #04210f;
-  --cs-bg: #1c1c1e; --cs-surface: #2c2c2e; --cs-surface-2: #242426; --cs-label: #f5f5f7; --cs-label-2: #aeaeb2; --cs-label-3: #8e8e93; --cs-separator: rgba(84, 84, 88, .55); --cs-fill: rgba(120, 120, 128, .24); --cs-fill-2: rgba(120, 120, 128, .36);
-  --cs-glass: rgba(44, 44, 46, .6); --cs-glass-edge: rgba(255, 255, 255, .12); --cs-danger: #ff6961; --cs-warning: #ffb340; --cs-info: #64b5ff; --cs-shadow-2: 0 11px 34px rgba(0, 0, 0, .65); --cs-wallpaper: linear-gradient(160deg, #0f5a2d 0%, #0a3d20 55%, #04200f 100%); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --cs-tint: var(--cs-pink-400); --cs-tint-strong: var(--cs-pink-300); --cs-tint-soft: rgba(255, 77, 134, .18); --cs-on-tint: #ffffff;
+  --cs-bg: #120a14; --cs-surface: #1e1422; --cs-surface-2: #181019; --cs-label: #f7eef2; --cs-label-2: #b7a5b1; --cs-label-3: #8d7a88; --cs-separator: rgba(255, 190, 220, .14); --cs-fill: rgba(255, 190, 220, .09); --cs-fill-2: rgba(255, 190, 220, .17);
+  --cs-glass: rgba(34, 18, 38, .62); --cs-glass-edge: rgba(255, 170, 205, .16); --cs-danger: #ff7a8e; --cs-warning: #ffb066; --cs-info: #8ab8ff; --cs-shadow-1: 0 1px 2px rgba(0, 0, 0, .45), 0 2px 8px rgba(0, 0, 0, .35); --cs-shadow-2: 0 11px 34px rgba(0, 0, 0, .7);
+  --cs-wallpaper: linear-gradient(165deg, #140812 0%, #2b0a1e 50%, #5a0a2c 100%); --cs-wall-arc-a: rgba(255, 143, 179, .13); --cs-wall-arc-b: rgba(31, 0, 9, .5); } }
+:root[data-theme="dark"] { --cs-tint: var(--cs-pink-400); --cs-tint-strong: var(--cs-pink-300); --cs-tint-soft: rgba(255, 77, 134, .18); --cs-on-tint: #ffffff;
+  --cs-bg: #120a14; --cs-surface: #1e1422; --cs-surface-2: #181019; --cs-label: #f7eef2; --cs-label-2: #b7a5b1; --cs-label-3: #8d7a88; --cs-separator: rgba(255, 190, 220, .14); --cs-fill: rgba(255, 190, 220, .09); --cs-fill-2: rgba(255, 190, 220, .17);
+  --cs-glass: rgba(34, 18, 38, .62); --cs-glass-edge: rgba(255, 170, 205, .16); --cs-danger: #ff7a8e; --cs-warning: #ffb066; --cs-info: #8ab8ff; --cs-shadow-1: 0 1px 2px rgba(0, 0, 0, .45), 0 2px 8px rgba(0, 0, 0, .35); --cs-shadow-2: 0 11px 34px rgba(0, 0, 0, .7);
+  --cs-wallpaper: linear-gradient(165deg, #140812 0%, #2b0a1e 50%, #5a0a2c 100%); --cs-wall-arc-a: rgba(255, 143, 179, .13); --cs-wall-arc-b: rgba(31, 0, 9, .5); }
 
 .cs, .cs * { box-sizing: border-box; }
 .cs { font-family: var(--cs-font, -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", sans-serif); font-size: 15px; line-height: 1.5; color: var(--cs-label); background: var(--cs-bg); -webkit-font-smoothing: antialiased; letter-spacing: .005em; }
@@ -42,9 +47,15 @@
 .cs h1 { font-size: clamp(30px, 5vw, 52px); } .cs h2 { font-size: 24px; } .cs h3 { font-size: 17px; }
 .cs a { color: var(--cs-tint-strong); text-underline-offset: 3px; }
 .cs :focus-visible { outline: none; box-shadow: var(--cs-focus); border-radius: var(--cs-r-control); }
+.cs ::selection { background: var(--cs-tint-soft); }
 
-/* the wallpaper: sweeping green curves made of gradients, so it costs no image */
-.cs-wallpaper { background: radial-gradient(120% 90% at 0% 110%, rgba(255, 255, 255, .34) 0 38%, transparent 38.3%), radial-gradient(110% 100% at 90% 125%, rgba(5, 54, 27, .28) 0 52%, transparent 52.3%), radial-gradient(90% 80% at 40% 140%, rgba(255, 255, 255, .26) 0 60%, transparent 60.3%), var(--cs-wallpaper); }
+/* the wallpaper: sweeping curves made of gradients, so it costs no image. Night by default, dawn in light mode. */
+.cs-wallpaper { background: radial-gradient(120% 90% at 0% 110%, var(--cs-wall-arc-a) 0 38%, transparent 38.3%), radial-gradient(110% 100% at 90% 125%, var(--cs-wall-arc-b) 0 52%, transparent 52.3%), radial-gradient(90% 80% at 40% 140%, var(--cs-wall-arc-a) 0 60%, transparent 60.3%), var(--cs-wallpaper); }
+:root[data-theme="dark"] .cs-wallpaper, .cs-wallpaper.night { background-image: radial-gradient(70% 55% at 62% 118%, rgba(255, 0, 88, .42), transparent 70%), radial-gradient(120% 90% at 0% 110%, var(--cs-wall-arc-a) 0 38%, transparent 38.3%), radial-gradient(110% 100% at 90% 125%, var(--cs-wall-arc-b) 0 52%, transparent 52.3%), var(--cs-wallpaper); }
+
+/* the pointed arch: the one gothic shape. Use it for avatars, hero images, selected tabs, empty states. */
+.cs-lancet { border-radius: 999px 999px 0 0 / 80% 80% 0 0; clip-path: polygon(0 100%, 0 46%, 6% 30%, 18% 16%, 34% 6%, 50% 0, 66% 6%, 82% 16%, 94% 30%, 100% 46%, 100% 100%); }
+.cs-star::before { content: ""; display: inline-block; width: .8em; height: .8em; margin-right: .35em; vertical-align: -.05em; background: currentColor; clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); }
 
 /* frosted bars and sheets */
 .cs-glass { background: var(--cs-glass); -webkit-backdrop-filter: blur(var(--cs-glass-blur)) saturate(1.6); backdrop-filter: blur(var(--cs-glass-blur)) saturate(1.6); border: 1px solid var(--cs-glass-edge); box-shadow: inset 0 1px 0 var(--cs-glass-edge), var(--cs-shadow-1); }
@@ -60,24 +71,24 @@
 .cs-row { display: flex; align-items: center; gap: var(--cs-s3); padding: 11px var(--cs-s4); min-height: 44px; }
 
 /* controls */
-.cs-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 32px; padding: 5px 14px; font: inherit; font-weight: 600; font-size: 14px; color: var(--cs-label); background: linear-gradient(var(--cs-surface), var(--cs-surface-2)); border: 0; border-radius: var(--cs-r-control); box-shadow: 0 0 0 1px var(--cs-separator), 0 1px 2px rgba(0, 0, 0, .08); cursor: pointer; transition: transform .08s ease, box-shadow .15s ease, filter .15s ease; }
+.cs-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 32px; padding: 5px 14px; font: inherit; font-weight: 600; font-size: 14px; color: var(--cs-label); background: linear-gradient(var(--cs-surface), var(--cs-surface-2)); border: 0; border-radius: var(--cs-r-control); box-shadow: 0 0 0 1px var(--cs-separator), 0 1px 2px rgba(30, 6, 22, .1); cursor: pointer; transition: transform .08s ease, box-shadow .15s ease, filter .15s ease; }
 .cs-btn:hover { filter: brightness(.98); } .cs-btn:active { transform: translateY(1px); filter: brightness(.95); }
 .cs-btn[disabled] { opacity: .45; cursor: not-allowed; }
-.cs-btn.primary { color: var(--cs-on-tint); background: linear-gradient(var(--cs-green-400), var(--cs-green-600)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 0 0 1px rgba(5, 54, 27, .35), 0 1px 3px rgba(5, 54, 27, .3); text-shadow: 0 1px 0 rgba(5, 54, 27, .25); }
-.cs-btn.primary:hover { filter: brightness(1.05); }
+.cs-btn.primary { color: var(--cs-on-tint); background: linear-gradient(#ff2a73, #c4003f); box-shadow: inset 0 1px 0 rgba(255, 190, 215, .5), 0 0 0 1px rgba(61, 0, 22, .55), 0 1px 3px rgba(61, 0, 22, .4); text-shadow: 0 1px 0 rgba(61, 0, 22, .35); }
+.cs-btn.primary:hover { filter: brightness(1.06); }
 .cs-btn.plain { background: none; box-shadow: none; color: var(--cs-tint-strong); }
 .cs-btn.large { min-height: 40px; padding: 8px 20px; font-size: 16px; border-radius: 10px; }
-.cs-field { width: 100%; min-height: 34px; padding: 6px 10px; font: inherit; color: var(--cs-label); background: var(--cs-surface); border: 0; border-radius: var(--cs-r-control); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1), 0 0 0 1px var(--cs-separator); }
-.cs-field:focus { outline: none; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1), var(--cs-focus), 0 0 0 1px var(--cs-tint); }
+.cs-field { width: 100%; min-height: 34px; padding: 6px 10px; font: inherit; color: var(--cs-label); background: var(--cs-surface); border: 0; border-radius: var(--cs-r-control); box-shadow: inset 0 1px 2px rgba(30, 6, 22, .14), 0 0 0 1px var(--cs-separator); }
+.cs-field:focus { outline: none; box-shadow: inset 0 1px 2px rgba(30, 6, 22, .14), var(--cs-focus), 0 0 0 1px var(--cs-tint); }
 .cs-segmented { display: inline-flex; padding: 2px; gap: 2px; background: var(--cs-fill); border-radius: 9px; }
 .cs-segmented > button { font: inherit; font-weight: 600; font-size: 13px; padding: 4px 14px; border: 0; background: none; color: var(--cs-label-2); border-radius: 7px; cursor: pointer; }
-.cs-segmented > button[aria-pressed="true"] { background: var(--cs-surface); color: var(--cs-label); box-shadow: 0 1px 3px rgba(0, 0, 0, .18), 0 0 0 .5px var(--cs-separator); }
+.cs-segmented > button[aria-pressed="true"] { background: var(--cs-surface); color: var(--cs-label); box-shadow: 0 1px 3px rgba(30, 6, 22, .25), 0 0 0 .5px var(--cs-separator); }
 .cs-switch { appearance: none; -webkit-appearance: none; width: 42px; height: 26px; border-radius: 13px; background: var(--cs-fill-2); position: relative; cursor: pointer; transition: background .2s; vertical-align: middle; }
-.cs-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, .3); transition: transform .2s ease; }
+.cs-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, .35); transition: transform .2s ease; }
 .cs-switch:checked { background: var(--cs-tint); } .cs-switch:checked::after { transform: translateX(16px); }
 .cs-badge { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 99px; font-size: 12px; font-weight: 700; color: var(--cs-tint-strong); background: var(--cs-tint-soft); }
 .cs-kbd { font-family: var(--cs-mono); font-size: 12px; padding: 1px 6px; border-radius: 5px; background: var(--cs-fill); box-shadow: inset 0 -1px 0 var(--cs-separator); }
-.cs-icon { border-radius: 22.37%; box-shadow: var(--cs-shadow-1); }   /* continuous-corner app icon proportion */
+.cs-icon { border-radius: 22.37%; box-shadow: var(--cs-shadow-1); }
 
 @media (prefers-reduced-motion: reduce) { .cs *, .cs-btn, .cs-switch, .cs-switch::after { transition: none !important; animation: none !important; } }
 @media (forced-colors: active) { .cs-btn, .cs-field, .cs-card { border: 1px solid CanvasText; } .cs-btn.primary { background: Highlight; color: HighlightText; } }

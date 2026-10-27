@@ -5,7 +5,7 @@ The home of every Cohnsoft brand asset: logos, app icons, wallpapers, the Cohn S
 Open **[index.html](index.html)** (any static server, or double-click) for the brand portal, and read **[BRAND.md](BRAND.md)** for the rules.
 
 ```
-logos/        mark, app-icon, glyph, lockup, pixel, social, wallpaper   (PNG + SVG)
+logos/        mark, app-icon, glyph, lockup, pixel, social, wallpaper (night + dawn)   (PNG + SVG)
 icons/        cohnsoft.icns, cohnsoft.ico, favicons, apple-touch-icon
 fonts/        Cohn Sans Regular + Bold (TTF, WOFF2), source (build_font.py), OFL.txt
 css/          goldengate.css (design system), cohnsans.css (@font-face)

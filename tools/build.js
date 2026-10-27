@@ -15,6 +15,8 @@ const art = require('./art.js');
 const ROOT = path.join(__dirname, '..');
 const D = (p) => { const f = path.join(ROOT, p); fs.mkdirSync(f, { recursive: true }); return f; };
 for (const d of ['logos/mark', 'logos/app-icon', 'logos/glyph', 'logos/lockup', 'logos/pixel', 'logos/social', 'logos/wallpaper', 'source']) D(d);
+for (const d of ['logos', 'icons', 'source']) fs.rmSync(path.join(ROOT, d), { recursive: true, force: true });   // never leave stale artwork behind
+for (const d of ['logos/mark', 'logos/app-icon', 'logos/glyph', 'logos/lockup', 'logos/pixel', 'logos/social', 'logos/wallpaper', 'source']) D(d);
 const made = [];
 
 /** Save an RGBA image as a Sprite document and export it with Sprite's PNG exporter. */
@@ -40,16 +42,16 @@ const write = (rel, text) => fs.writeFileSync(path.join(ROOT, rel), text);
   write('logos/mark/cohnsoft-mark.svg', svg.markSvg(512, false));
   write('logos/app-icon/cohnsoft-app.svg', svg.markSvg(512, true));
   // ---- the glyph alone
-  for (const v of ['green', 'white', 'black']) { await sprite('cohnsoft-glyph-' + v, hd.renderGlyph(512, v), 'logos/glyph/cohnsoft-glyph-' + v); write('logos/glyph/cohnsoft-glyph-' + v + '.svg', svg.glyphSvg(512, v === 'green' ? 'green' : v === 'white' ? '#ffffff' : '#1d1d1f')); }
+  for (const v of ['pink', 'white', 'black']) { await sprite('cohnsoft-glyph-' + v, hd.renderGlyph(512, v), 'logos/glyph/cohnsoft-glyph-' + v); write('logos/glyph/cohnsoft-glyph-' + v + '.svg', svg.glyphSvg(512, v === 'pink' ? 'pink' : v === 'white' ? '#ffffff' : '#17101a')); }
   // ---- wordmarks and lockups (512 wide as documents; 2x and 4x drawn natively; SVG for any size)
-  const ink = hd.hex('#1d1d1f'), green = hd.hex('#1fae55'), white = hd.hex('#ffffff'), lg = hd.hex('#4cdb7e');
-  await sprite('cohnsoft-wordmark', hd.renderWordmark(512, 128, ink, green), 'logos/lockup/cohnsoft-wordmark');
-  await sprite('cohnsoft-wordmark-dark', hd.renderWordmark(512, 128, white, lg), 'logos/lockup/cohnsoft-wordmark-dark');
+  const ink = hd.hex('#17101a'), pink = hd.hex('#ff0058'), bone = hd.hex('#f7eef2'), pinkLight = hd.hex('#ff4d86'), white = hd.hex('#ffffff');
+  await sprite('cohnsoft-wordmark', hd.renderWordmark(512, 128, ink, pink), 'logos/lockup/cohnsoft-wordmark');
+  await sprite('cohnsoft-wordmark-dark', hd.renderWordmark(512, 128, bone, pinkLight), 'logos/lockup/cohnsoft-wordmark-dark');
   await sprite('cohnsoft-wordmark-black', hd.renderWordmark(512, 128, ink, ink), 'logos/lockup/cohnsoft-wordmark-black');
   await sprite('cohnsoft-wordmark-white', hd.renderWordmark(512, 128, white, white), 'logos/lockup/cohnsoft-wordmark-white');
-  write('logos/lockup/cohnsoft-wordmark.svg', svg.wordmarkSvg(1024, 256, '#1d1d1f', '#1fae55'));
-  write('logos/lockup/cohnsoft-wordmark-dark.svg', svg.wordmarkSvg(1024, 256, '#ffffff', '#4cdb7e'));
-  write('logos/lockup/cohnsoft-wordmark-black.svg', svg.wordmarkSvg(1024, 256, '#1d1d1f', '#1d1d1f'));
+  write('logos/lockup/cohnsoft-wordmark.svg', svg.wordmarkSvg(1024, 256, '#17101a', '#ff0058'));
+  write('logos/lockup/cohnsoft-wordmark-dark.svg', svg.wordmarkSvg(1024, 256, '#f7eef2', '#ff4d86'));
+  write('logos/lockup/cohnsoft-wordmark-black.svg', svg.wordmarkSvg(1024, 256, '#17101a', '#17101a'));
   write('logos/lockup/cohnsoft-wordmark-white.svg', svg.wordmarkSvg(1024, 256, '#ffffff', '#ffffff'));
   await sprite('cohnsoft-lockup', hd.renderLockup(512, 144, false), 'logos/lockup/cohnsoft-lockup');
   await sprite('cohnsoft-lockup-dark', hd.renderLockup(512, 144, true), 'logos/lockup/cohnsoft-lockup-dark');
@@ -59,8 +61,8 @@ const write = (rel, text) => fs.writeFileSync(path.join(ROOT, rel), text);
   await sprite('cohnsoft-lockup-stacked', hd.renderStacked(512, 400), 'logos/lockup/cohnsoft-lockup-stacked'); raw('logos/lockup/cohnsoft-lockup-stacked@2x.png', hd.renderStacked(1024, 800));
   // ---- social card and wallpapers
   raw('logos/social/cohnsoft-social-1200x630.png', hd.renderSocial(1200, 630)); raw('logos/social/cohnsoft-social-2400x1260.png', hd.renderSocial(2400, 1260));
-  await sprite('cohnsoft-wallpaper', hd.renderWallpaper(512, 320, false), 'logos/wallpaper/cohnsoft-wallpaper-preview'); await sprite('cohnsoft-wallpaper-dark', hd.renderWallpaper(512, 320, true), 'logos/wallpaper/cohnsoft-wallpaper-dark-preview');
-  raw('logos/wallpaper/cohnsoft-wallpaper-2560x1600.png', hd.renderWallpaper(2560, 1600, false)); raw('logos/wallpaper/cohnsoft-wallpaper-dark-2560x1600.png', hd.renderWallpaper(2560, 1600, true));
+  await sprite('cohnsoft-wallpaper-night', hd.renderWallpaper(512, 320, true), 'logos/wallpaper/cohnsoft-wallpaper-night-preview'); await sprite('cohnsoft-wallpaper-dawn', hd.renderWallpaper(512, 320, false), 'logos/wallpaper/cohnsoft-wallpaper-dawn-preview');
+  raw('logos/wallpaper/cohnsoft-wallpaper-night-2560x1600.png', hd.renderWallpaper(2560, 1600, true)); raw('logos/wallpaper/cohnsoft-wallpaper-dawn-2560x1600.png', hd.renderWallpaper(2560, 1600, false));
 
   // ---- the original pixel-art mark, kept as a variant: the company grew up on AltStack Sprite
   const CH = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

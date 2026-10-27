@@ -3,8 +3,8 @@
 // which build.js draws into AltStack Sprite documents with Sprite's own tools and exports with Sprite's PNG engine.
 const { BAYER } = require('./palette');
 
-// Palette layout shared by every sprite: 0-7 the green tile ramp, 8-11 the white glyph ramp, 12-15 ink and neutrals.
-const COLORS = ['#7cf0a0', '#4cdb7e', '#2fc866', '#22b45a', '#1a9b4d', '#138340', '#0d6a34', '#085228', '#ffffff', '#eafff1', '#c4f3d6', '#93dcae', '#1d1d1f', '#636366', '#f2f2f7', '#0b4a24'];
+// Palette layout shared by every sprite: 0-7 the pink tile ramp, 8-11 the white glyph ramp, 12-15 ink and neutrals.
+const COLORS = ['#ff8fb3', '#ff6a9b', '#ff3d7f', '#ff0058', '#d6004a', '#a8003a', '#7a002b', '#4a0019', '#ffffff', '#fff1f6', '#ffc2d6', '#ff93b8', '#17101a', '#6b5d68', '#f6f1f4', '#2a000f'];
 const I = { g0: 0, g1: 1, g2: 2, g3: 3, g4: 4, g5: 5, g6: 6, g7: 7, w0: 8, w1: 9, w2: 10, w3: 11, ink: 12, gray: 13, mist: 14, deep: 15 };
 
 const grid = (w, h, v) => Array.from({ length: h }, () => new Array(w).fill(v === undefined ? -1 : v));
@@ -26,15 +26,15 @@ function geom(n) {
 function inGlyph(g, x, y) {
   const dx = x + 0.5 - g.cx, dy = y + 0.5 - g.cy, r = Math.hypot(dx, dy);
   if (r <= g.rOut && r >= g.rIn && Math.abs(Math.atan2(dy, dx)) > g.half) return true;   // the ring, minus the opening on the right
-  return x >= g.bx && x < g.bx + g.bit && y >= g.by && y < g.by + g.bit;          // the bit
+  return Math.abs(x + 0.5 - (g.bx + g.bit / 2)) + Math.abs(y + 0.5 - (g.by + g.bit / 2)) <= g.bit * 0.62;   // the glint: a diamond
 }
-/** Glyph colour by height: white at the top shading down to pale green, so it reads as a raised, lit object. */
+/** Glyph colour by height: white at the top shading down to pale pink, so it reads as a raised, lit object. */
 function glyphShade(g, y, ramp) {
   const t = Math.max(0, Math.min(0.999, (y - (g.cy - g.rOut)) / (2 * g.rOut)));
   return ramp[Math.floor(t * ramp.length)];
 }
 
-/** The primary mark: green squircle tile, white C with its bit, a drop shadow, a lit top edge. */
+/** The primary mark: pink squircle tile, white C with its bit, a drop shadow, a lit top edge. */
 function tile(n) {
   const g = geom(n), out = grid(n, n), lights = [I.w0, I.w1, I.w2, I.w3];
   const glyph = grid(n, n, 0);
@@ -107,7 +107,7 @@ function lockup(markGrid, textA, textB, scale, pad) {
   return out;
 }
 
-/** Pixel-art "wallpaper": sweeping curves in the greens, dithered so the gradients stay smooth. */
+/** Pixel-art "wallpaper": sweeping curves in the pinks, dithered so the gradients stay smooth. */
 function wallpaper(w, h, dark) {
   const out = grid(w, h);
   const field = (x, y) => {

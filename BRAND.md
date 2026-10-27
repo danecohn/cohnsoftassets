@@ -1,21 +1,20 @@
 # VigilTech brand guide
 
-**VigilTech** makes Christian technology, Catholic at its core, and gives it away. Founded by **Demetria Althea Cohn** (online: **Demie Althea Cohn**). VigilTech is the home of what was AltStack, Artemis Softworks and Cohnsoft. Site: **vigiltech.org**.
+**VigilTech** makes free, open-source software. Founded by **Demetria Althea Cohn** (online: **Demie Althea Cohn**). VigilTech is the home of what was AltStack, Artemis Softworks and Cohnsoft. Site: **vigiltech.org**.
 
-> Keep watch. (Mark 13:37)
+> Calm software, made in the open.
 
-## What we believe, and what it means for the software
+## Principles
 
-- **Freely given.** "Freely you have received; freely give." (Matthew 10:8) Everything we make is open source under the **GNU GPL v3**: code, icons, wallpapers, sounds. Anyone may use it, study it, change it and share it, on the same terms.
-- **Human dignity.** No ads, no tracking, no dark patterns, no manufactured outrage. People are never the product.
-- **Truth.** Software says what it does. No dishonest defaults, no hidden costs.
-- **Rest.** No streak guilt, no notification pressure. There is a Sabbath in good design: quiet by default.
-- **Beauty.** The Church built cathedrals so ordinary people could stand inside something beautiful. Software can try to do the same.
-- **Service.** We build tools for people: families, parishes, schools, makers.
+- **Free software.** Everything we make is open source under the GNU GPL v3: code, icons, wallpapers, sounds.
+- **Respect for people.** No ads, no tracking, no dark patterns.
+- **Honest.** Software says what it does.
+- **Quiet by default.** No streak guilt, no notification pressure.
+- **Made with care.** Good typography, good icons, small details.
 
 ## Identity
 
-The mark is a **vigil lamp**: the lamp that burns day and night beside the tabernacle. The **flame** is a vesica, the lens made where two pointed arches overlap. The **bowl** is an upside-down lancet arch with a small **cross** cut into it. A four-point **star** (the guiding star, the glint of light) rises beside the flame. All of it sits on a **pink** tile. "Vigil" means keeping watch: the Easter Vigil, the watch of the night, Mark 13:37. The wordmark is **vigiltech**, lowercase, in Vigil Sans Bold: "vigil" in ink (or bone white on dark) and "tech" in VigilTech Pink.
+The mark is a **lamp**: a flame over a bowl, with a small cross cut into the bowl and a four-point star beside it, on a **pink** tile. The flame is a vesica, the lens made where two pointed arches overlap; the bowl is an upside-down lancet arch. "Vigil" means keeping watch. The wordmark is **vigiltech**, lowercase, in Vigil Sans Bold: "vigil" in ink (or bone white on dark) and "tech" in VigilTech Pink.
 
 | Asset | Use |
 |---|---|
@@ -47,16 +46,15 @@ One pink; everything else is a warm, plum-tinted neutral. See `tokens.json` and 
 | Bone / Paper | `#f6f1f4` / `#fffbfd` | Light background and surface. |
 | Night / Night Raised | `#120a14` / `#1e1422` | Dark appearance. Night is where VigilTech is most at home. |
 
-## Gothic, the cathedral kind
+## Gothic, softly
 
-The pink-and-plum, after-dark look stays. Its gothic streak is the Catholic one: cathedrals, candlelight and stained glass, never horror. It lives in a few repeatable details:
+The pink-and-plum, after-dark look has a quiet gothic streak, taken from church architecture rather than horror. It lives in a few repeatable details:
 
-- **Night first.** Plum-black surfaces with a pink glow low in the frame, like a church lit by candles; light mode is "dawn" (bone and rose), the same church at morning Mass.
-- **The pointed arch.** The one gothic shape: the lancet window. It is the gloss on the tile, the arches along the wallpaper, and the flame and the bowl of the mark. `.vt-lancet` for avatars and hero images.
+- **Night first.** Plum-black surfaces with a pink glow low in the frame; light mode is "dawn" (bone and rose).
+- **The pointed arch.** The one gothic shape: the lancet window. It is the gloss on the tile, the arches along the wallpaper, and the flame and bowl of the mark. `.vt-lancet` for avatars and hero images.
 - **One star.** The four-point star is the accent: the glint on the mark, stars in the sky, `.vt-star` bullets. Use sparingly.
-- **The rose window and the crescent.** In wallpapers and empty states; the rose is Our Lady's flower.
 - **Candle-warm light and thin rims.** Highlights lean rose, edges are fine hairlines, shadows are wine, never grey.
-- **Never:** skulls used as decoration, bats, webs, occult or pagan symbols, spikes, blackletter body text, dripping effects. A memento mori is fine in context; costume is not. Stay friendly, readable and calm. Accessibility beats atmosphere.
+- **Never:** skulls as decoration, bats, spikes, blackletter body text, dripping effects. Stay friendly, readable and calm. Accessibility beats atmosphere.
 
 ## Typeface: Vigil Sans
 
@@ -77,12 +75,12 @@ Software that feels at home on a Mac and travels well to Windows and Linux. Insp
 ## Voice and credits
 
 Plain, warm, specific. Say what the software does; skip hype.
-Standard credit: **A product of VigilTech, vigiltech.org.**  Founder line: **VigilTech was founded by Demetria Althea Cohn.**  Short blessing, where it fits: *Ad maiorem Dei gloriam.*
+Standard credit: **A product of VigilTech, vigiltech.org.**  Founder line: **VigilTech was founded by Demetria Althea Cohn.**
 Product names (AltStack Mail, AltStack Game Producer, Sprite, Box, and so on) stay as product identities until renamed; VigilTech is the company behind them. Keep upstream and third-party notices intact: Godot, Blender, BeepBox and the like are credited by their own licences.
 
 ## Sound
 
-`sounds/` (synthesised from scratch by `tools/sound.js`, no samples, GPL v3): `vigil-chime` (startup, a rising Dorian figure in bells over an open fifth), `bell` (notifications), `angelus` (the three-three-three-and-nine pattern, for a daily reminder), `kyrie-vigil` (an original unison melody in the Dorian mode over a drone, for calm backgrounds; it is not a quotation of any existing chant) and three soft interface sounds. Sacred music in our software is meant to be prayerful and quiet by default; nothing plays unless the person asks for it.
+`sounds/` is synthesised from scratch by `tools/sound.js` (no samples, GPL v3): `vigil-chime` (startup), `bell` (notifications), `angelus` (a bell pattern for a daily reminder), `kyrie-vigil` (an original melody in the Dorian mode over a drone, for calm backgrounds) and three soft interface sounds. Nothing plays unless the person asks for it.
 
 ## Licence
 

@@ -2,7 +2,7 @@
 
 The home of every VigilTech brand asset: logos, app icons, wallpapers, the Vigil Sans typeface and the Golden Gate design system.
 
-**Free software.** Code and artwork are under the GNU GPL v3 (`LICENSE`); the Vigil Sans typeface is under the SIL OFL 1.1. VigilTech makes Christian technology, Catholic at its core: see BRAND.md.
+**Free software.** Code and artwork are under the GNU GPL v3 (`LICENSE`); the Vigil Sans typeface is under the SIL OFL 1.1. See BRAND.md.
 
 Open **[index.html](index.html)** (any static server, or double-click) for the brand portal, and read **[BRAND.md](BRAND.md)** for the rules.
 

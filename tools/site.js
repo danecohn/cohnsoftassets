@@ -40,9 +40,9 @@ const html = `<!doctype html>
 </style>
 </head>
 <body class="cs">
-<header class="hero vt-wallpaper night"><div><img src="logos/lockup/vigiltech-lockup-dark@2x.png" alt="vigiltech"><p>Christian technology, Catholic at its core, free for everyone under the GPL. Keep watch.</p></div></header>
+<header class="hero vt-wallpaper night"><div><img src="logos/lockup/vigiltech-lockup-dark@2x.png" alt="vigiltech"><p>Calm software, made in the open, free under the GPL.</p></div></header>
 <main class="wrap">
-<section><h2>Logo</h2><p class="lead">The mark is a vigil lamp, the light that burns beside the tabernacle: a flame made from two pointed arches, a bowl shaped like an upside-down lancet window with a cross cut into it, and a four-point guiding star, on a pink tile. It reads at 16 pixels and at the size of a building. The wordmark is set in Vigil Sans, with "tech" in VigilTech Pink.</p>
+<section><h2>Logo</h2><p class="lead">The mark is a lamp: a flame made from two pointed arches over a bowl shaped like an upside-down lancet window, with a small cross cut into it and a four-point star beside it, on a pink tile. It reads at 16 pixels and at the size of a building. The wordmark is set in Vigil Sans, with "tech" in VigilTech Pink.</p>
 <div class="grid">
 ${asset('logos/app-icon/vigiltech-app-512.png', 'App icon', '')}${asset('logos/mark/vigiltech-mark-512.png', 'Mark (web, favicon, avatar)', '')}
 ${asset('logos/glyph/vigiltech-glyph-pink.png', 'Glyph, pink', '')}${asset('logos/glyph/vigiltech-glyph-white.png', 'Glyph, white', 'dark')}${asset('logos/glyph/vigiltech-glyph-black.png', 'Glyph, black', '')}
@@ -66,7 +66,7 @@ ${asset('logos/lockup/vigiltech-lockup-stacked@2x.png', 'Stacked lockup', '')}${
 <section><h2>Downloads</h2><p class="lead">Everything here is in this repository.</p>
 <div class="row2"><a class="vt-btn" href="icons/vigiltech.icns">vigiltech.icns</a><a class="vt-btn" href="icons/vigiltech.ico">vigiltech.ico</a><a class="vt-btn" href="logos/social/vigiltech-social-1200x630.png">Social card</a><a class="vt-btn" href="logos/wallpaper/vigiltech-wallpaper-night-2560x1600.png">Wallpaper, night</a><a class="vt-btn" href="logos/wallpaper/vigiltech-wallpaper-dawn-2560x1600.png">Wallpaper, dawn</a><a class="vt-btn" href="tokens.json">tokens.json</a><a class="vt-btn" href="BRAND.md">Brand guide</a></div></section>
 
-<footer>VigilTech, vigiltech.org. Founded by Demetria Althea Cohn (online: Demie Althea Cohn). Free software under the GNU GPL v3. Ad maiorem Dei gloriam.</footer>
+<footer>VigilTech, vigiltech.org. Founded by Demetria Althea Cohn (online: Demie Althea Cohn). Free software under the GNU GPL v3.</footer>
 </main></body></html>
 `;
 fs.writeFileSync(path.join(ROOT, 'index.html'), html);

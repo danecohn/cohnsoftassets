@@ -12,7 +12,7 @@ icons/        vigiltech.icns, vigiltech.ico, favicons, apple-touch-icon
 fonts/        Vigil Sans Regular + Bold (TTF, WOFF2), source (build_font.py), OFL.txt
 css/          goldengate.css (design system), vigilsans.css (@font-face)
 source/       editable AltStack Sprite documents (.asprite.json)
-sounds/       chime, bells, a Dorian chant-style piece, interface sounds (WAV)
+sounds/       chime, bells, an original Dorian background piece, interface sounds (WAV)
 tokens.json   colour, radii, type tokens
 tools/        build.js, hd.js, svg.js, site.js, art.js + the Sprite engine modules used to export
 ```
@@ -22,8 +22,10 @@ Use from a website:
 ```html
 <link rel="stylesheet" href="https://raw.githack.com/danecohn/vigiltechassets/main/css/vigilsans.css">
 <link rel="stylesheet" href="https://raw.githack.com/danecohn/vigiltechassets/main/css/goldengate.css">
-<body class="cs">…</body>
+<body class="vt">…</body>
 ```
 (or copy `css/`, `fonts/` and `logos/` into your project).
 
-Licences: code and tooling GPL-3.0-only (see LICENSE; `tools/sprite/` is AltStack Sprite, GPL-3.0). Vigil Sans: SIL Open Font License 1.1 (`fonts/OFL.txt`). The VigilTech name and logos are VigilTech's marks: use them to refer to VigilTech and its products, not to suggest endorsement.
+Licences: code and tooling GPL-3.0-or-later (see LICENSE; `tools/sprite/` is AltStack Sprite, GPL-3.0). Vigil Sans: SIL Open Font License 1.1 (`fonts/OFL.txt`). The VigilTech name and logos are VigilTech's marks: use them to refer to VigilTech and its products, not to suggest endorsement.
+
+Validate the shared styles with `node --test tests/*.test.cjs` and rebuild the portal with `node tools/site.js`. The preview offers Night, Dawn and System appearance and a system-font option; preferences remain on this device. Nothing plays automatically.

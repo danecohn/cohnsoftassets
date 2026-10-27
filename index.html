@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
 <title>VigilTech brand</title>
 <meta name="description" content="The VigilTech identity: logos, colour, typeface and the Golden Gate design system.">
 <link rel="icon" href="icons/favicon-32.png" type="image/png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="stylesheet" href="css/vigilsans.css"><link rel="stylesheet" href="css/goldengate.css">
+<script defer src="js/appearance.js"></script>
 <style>
  body{margin:0} .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
  .hero{min-height:420px;display:grid;place-items:center;text-align:center;padding:60px 20px;color:#fff;border-radius:0 0 28px 28px;overflow:hidden}
@@ -14,18 +15,19 @@
  section{margin-top:56px} section>h2{margin-bottom:6px} section>p.lead{color:var(--vt-label-2);margin:0 0 20px;max-width:64ch}
  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
  figure{margin:0;background:#fffbfd;color:#17101a;border-radius:var(--vt-r-group);box-shadow:var(--vt-shadow-1),0 0 0 1px rgba(255,170,205,.16);padding:18px;display:flex;flex-direction:column;align-items:center;gap:10px}
- figure img{max-width:100%;max-height:150px;object-fit:contain} figure.dark{background:#120a14;color:#f7eef2} figure.wide{grid-column:span 2} figcaption{font-size:12.5px;color:#6b5d68} figure.dark figcaption{color:#b7a5b1}
+ figure img{max-width:100%;max-height:150px;object-fit:contain} figure.dark{background:#120a14;color:#f7eef2} figure.wide{grid-column:span 2} @media(max-width:540px){figure.wide{grid-column:span 1}.demo .bar{flex-wrap:wrap}.demo .stage{grid-template-columns:minmax(0,1fr);padding:12px}.hero{min-height:300px}.big{overflow-wrap:anywhere}.vt-field{max-width:100%} } figcaption{font-size:12.5px;color:#6b5d68} figure.dark figcaption{color:#b7a5b1}
  .sw{background:var(--vt-surface);border-radius:var(--vt-r-group);box-shadow:0 0 0 1px var(--vt-separator);overflow:hidden;font-size:13px} .sw i{display:block;height:64px} .sw b{display:block;padding:8px 10px 0} .sw code{display:block;padding:0 10px 9px;color:var(--vt-label-2);font-family:var(--vt-mono)}
- table{border-collapse:collapse;width:100%;font-size:14px} td,th{padding:8px 10px;text-align:left;border-bottom:1px solid var(--vt-separator)} .ok{color:var(--vt-tint-strong);font-weight:700}
- .spec h3{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--vt-label-3);margin:18px 0 6px} .big{font-size:64px;font-weight:700;line-height:1.05;margin:0} .abc{font-size:30px;line-height:1.3;margin:4px 0} .body{font-size:17px;max-width:60ch}
+ table{overflow-wrap:anywhere;table-layout:fixed;border-collapse:collapse;width:100%;font-size:14px} td,th{padding:8px 10px;text-align:left;border-bottom:1px solid var(--vt-separator)} .ok{color:var(--vt-tint-strong);font-weight:700}
+ .spec h3{font-size:12px;text-transform:uppercase;color:var(--vt-label-3);margin:18px 0 6px} .big{font-size:64px;font-weight:700;line-height:1.05;margin:0} .abc{overflow-wrap:anywhere;font-size:30px;line-height:1.3;margin:4px 0} .body{font-size:17px;max-width:60ch}
  .demo{border-radius:var(--vt-r-sheet);overflow:hidden;box-shadow:var(--vt-shadow-2)} .demo .bar{display:flex;gap:10px;align-items:center} .demo .stage{padding:22px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
  .row2{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
  footer{margin-top:60px;color:var(--vt-label-2);font-size:14px}
 </style>
 </head>
-<body class="cs">
+<body class="vt">
 <header class="hero vt-wallpaper night"><div><img src="logos/lockup/vigiltech-lockup-dark@2x.png" alt="vigiltech"><p>Calm software, made in the open, free under the GPL.</p></div></header>
 <main class="wrap">
+<nav class="row2" aria-label="Preview appearance" style="margin-top:24px"><label>Appearance <select class="vt-field" id="appearance"><option value="dark">Night</option><option value="light">Dawn</option><option value="system">System</option></select></label><label class="vt-row"><input id="system-font" type="checkbox"> Use system font</label></nav>
 <section><h2>Logo</h2><p class="lead">The mark is a lamp: a flame made from two pointed arches over a bowl shaped like an upside-down lancet window, with a small cross cut into it and a four-point star beside it, on a pink tile. It reads at 16 pixels and at the size of a building. The wordmark is set in Vigil Sans, with "tech" in VigilTech Pink.</p>
 <div class="grid">
 <figure class=""><img src="logos/app-icon/vigiltech-app-512.png" alt="App icon" loading="lazy"><figcaption>App icon</figcaption></figure><figure class=""><img src="logos/mark/vigiltech-mark-512.png" alt="Mark (web, favicon, avatar)" loading="lazy"><figcaption>Mark (web, favicon, avatar)</figcaption></figure>
@@ -43,12 +45,12 @@
 <p class="body">The quick brown fox jumps over the lazy dog. Software should be calm, readable and kind to the person using it. Files: <a href="fonts/VigilSans-Regular.woff2">Regular</a> · <a href="fonts/VigilSans-Bold.woff2">Bold</a> (also .ttf).</p></section>
 
 <section><h2>Golden Gate design system</h2><p class="lead">Frosted bars over a night-sky wallpaper, quiet plum-tinted surfaces, soft shadows, one pink tint, and a single gothic shape: the pointed arch. <code>css/goldengate.css</code> carries the tokens and components; the sample below is built from them.</p>
-<div class="demo vt-wallpaper"><div class="vt-toolbar vt-glass bar"><img class="vt-icon" src="logos/mark/vigiltech-mark-64.png" width="28" height="28" alt=""><b>VigilTech Notes</b><span style="flex:1"></span><div class="vt-segmented"><button aria-pressed="true">All</button><button aria-pressed="false">Shared</button><button aria-pressed="false">Archive</button></div><button class="vt-btn primary">New note</button></div>
-<div class="stage"><div class="vt-card"><h3>Settings</h3><div class="vt-group" style="margin-top:10px"><div class="vt-row"><span style="flex:1">Sync with Warehouse</span><input class="vt-switch" type="checkbox" checked aria-label="Sync"></div><div class="vt-row"><span style="flex:1">Dark appearance</span><input class="vt-switch" type="checkbox" aria-label="Dark"></div><div class="vt-row"><span style="flex:1">Name</span><input class="vt-field" style="max-width:150px" value="Demie"></div></div></div>
+<div class="demo vt-wallpaper"><div class="vt-toolbar vt-glass bar"><img class="vt-icon" src="logos/mark/vigiltech-mark-64.png" width="28" height="28" alt=""><b>Vigil Notes</b><span style="flex:1"></span><div class="vt-segmented"><button aria-pressed="true">All</button><button aria-pressed="false">Shared</button><button aria-pressed="false">Archive</button></div><button class="vt-btn primary">New note</button></div>
+<div class="stage"><div class="vt-card"><h3>Settings</h3><div class="vt-group" style="margin-top:10px"><label class="vt-row"><span style="flex:1">Sync with Vigil Drive</span><input class="vt-switch" type="checkbox" checked></label><label class="vt-row"><span style="flex:1">Show archived notes</span><input class="vt-switch" type="checkbox"></label><label class="vt-row"><span style="flex:1">Name</span><input class="vt-field" style="max-width:150px" value="Demie"></label></div></div>
 <div class="vt-sheet vt-glass"><h3>Make it yours</h3><p style="color:var(--vt-label-2)">Sheets are translucent, with a lit top edge and a long soft shadow.</p><div class="row2"><button class="vt-btn">Cancel</button><button class="vt-btn primary">Continue</button><span class="vt-badge">Ready</span></div></div></div></div></section>
 
 <section><h2>Downloads</h2><p class="lead">Everything here is in this repository.</p>
 <div class="row2"><a class="vt-btn" href="icons/vigiltech.icns">vigiltech.icns</a><a class="vt-btn" href="icons/vigiltech.ico">vigiltech.ico</a><a class="vt-btn" href="logos/social/vigiltech-social-1200x630.png">Social card</a><a class="vt-btn" href="logos/wallpaper/vigiltech-wallpaper-night-2560x1600.png">Wallpaper, night</a><a class="vt-btn" href="logos/wallpaper/vigiltech-wallpaper-dawn-2560x1600.png">Wallpaper, dawn</a><a class="vt-btn" href="tokens.json">tokens.json</a><a class="vt-btn" href="BRAND.md">Brand guide</a></div></section>
 
-<footer>VigilTech, vigiltech.org. Founded by Demetria Althea Cohn (online: Demie Althea Cohn). Free software under the GNU GPL v3.</footer>
+<footer>A product of VigilTech, <a href="https://vigiltech.org">vigiltech.org</a>. Founded by Demetria Althea Cohn (online: Demie Althea Cohn). Free software under the GNU GPL v3.</footer>
 </main></body></html>
